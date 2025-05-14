@@ -1,199 +1,212 @@
-1. Python Script (requests)
-Steps:
+To help you compile and run the script based on your use case, I'll guide you step-by-step on how to execute the code for each of the methods (Python, JavaScript, cURL, and Gradio). Here’s how you can run each of the scripts on your local machine:
 
-Install requests if you haven’t already by running this in your terminal:
+### 1. **Python Script** (`requests`)
 
-bash
-Copy
-Edit
-pip install requests
-Create a Python script (script.py) with the following content:
+**Steps:**
 
-python
-Copy
-Edit
-import requests
+1. Install `requests` if you haven’t already by running this in your terminal:
 
-# Replace with your actual API key
-url = "https://api.hyperbolic.xyz/v1/chat/completions"
-headers = {
-    "Content-Type": "application/json",
-    "Authorization": "Bearer YOUR_API_KEY"  # Replace YOUR_API_KEY with your actual key
-}
-data = {
-    "messages": [{
-      "role": "user",
-      "content": "What can I do in SF?"
-    }],
-    "model": "NousResearch/Hermes-3-Llama-3.1-70B",
-    "max_tokens": 512,
-    "temperature": 0.7,
-    "top_p": 0.9
-}
+   ```bash
+   pip install requests
+   ```
 
-response = requests.post(url, headers=headers, json=data)
+2. Create a Python script (`script.py`) with the following content:
 
-if response.status_code == 200:
-    print(response.json())  # This will print the API response in JSON format
-else:
-    print(f"Error {response.status_code}: {response.text}")
-Replace YOUR_API_KEY with your actual API key.
+   ```python
+   import requests
 
-Run the script from your terminal:
+   # Replace with your actual API key
+   url = "https://api.hyperbolic.xyz/v1/chat/completions"
+   headers = {
+       "Content-Type": "application/json",
+       "Authorization": "Bearer YOUR_API_KEY"  # Replace YOUR_API_KEY with your actual key
+   }
+   data = {
+       "messages": [{
+         "role": "user",
+         "content": "What can I do in SF?"
+       }],
+       "model": "NousResearch/Hermes-3-Llama-3.1-70B",
+       "max_tokens": 512,
+       "temperature": 0.7,
+       "top_p": 0.9
+   }
 
-bash
-Copy
-Edit
-python script.py
-2. JavaScript (Node.js) Script (fetch API)
-Steps:
+   response = requests.post(url, headers=headers, json=data)
 
-Install Node.js if you haven’t already: Download Node.js.
+   if response.status_code == 200:
+       print(response.json())  # This will print the API response in JSON format
+   else:
+       print(f"Error {response.status_code}: {response.text}")
+   ```
 
-Create a new folder for your project and navigate into it:
+3. Replace `YOUR_API_KEY` with your actual API key.
 
-bash
-Copy
-Edit
-mkdir my-api-project
-cd my-api-project
-Create a file called script.js with the following content:
+4. Run the script from your terminal:
 
-javascript
-Copy
-Edit
-const fetch = require('node-fetch');  // Use `node-fetch` for server-side fetch
+   ```bash
+   python script.py
+   ```
 
-const url = 'https://api.hyperbolic.xyz/v1/chat/completions'; 
+---
 
-const response = await fetch(url, {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    Authorization: 'Bearer YOUR_API_KEY',  // Replace with your API key
-  },
-  body: JSON.stringify({
-    model: 'NousResearch/Hermes-3-Llama-3.1-70B',
-    messages: [{
-      "role": "user",
-      "content": 'What can I do in SF?'
-    }],
-    max_tokens: 512,
-    temperature: 0.7,
-    top_p: 0.9,
-    stream: false
-  }),
-});
+### 2. **JavaScript (Node.js) Script** (`fetch` API)
 
-const json = await response.json();
-const output = json.choices[0].message.content;
-console.log(output);
-Install node-fetch using npm:
+**Steps:**
 
-bash
-Copy
-Edit
-npm init -y  # Initializes a new Node.js project
-npm install node-fetch  # Installs fetch for Node.js
-Replace YOUR_API_KEY with your actual API key.
+1. Install Node.js if you haven’t already: [Download Node.js](https://nodejs.org/).
 
-Run the script:
+2. Create a new folder for your project and navigate into it:
 
-bash
-Copy
-Edit
-node script.js
-3. cURL Command (Command-Line)
-Steps:
+   ```bash
+   mkdir my-api-project
+   cd my-api-project
+   ```
 
-Ensure cURL is installed (most systems have it by default).
+3. Create a file called `script.js` with the following content:
 
-Open your terminal and run the following command (replace YOUR_API_KEY with your actual key):
+   ```javascript
+   const fetch = require('node-fetch');  // Use `node-fetch` for server-side fetch
 
-bash
-Copy
-Edit
-curl -X POST "https://api.hyperbolic.xyz/v1/chat/completions" \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer YOUR_API_KEY" \
-  --data-raw '{
-    "messages": [{
-      "role": "user",
-      "content": "What can I do in SF?"
-    }],
-    "model": "NousResearch/Hermes-3-Llama-3.1-70B",
-    "max_tokens": 512,
-    "temperature": 0.7,
-    "top_p": 0.9,
-    "stream": false
-  }'
-This will send the request to the API directly from the terminal.
+   const url = 'https://api.hyperbolic.xyz/v1/chat/completions'; 
 
-4. Gradio Interface (Python GUI)
-Steps:
+   const response = await fetch(url, {
+     method: 'POST',
+     headers: {
+       'Content-Type': 'application/json',
+       Authorization: 'Bearer YOUR_API_KEY',  // Replace with your API key
+     },
+     body: JSON.stringify({
+       model: 'NousResearch/Hermes-3-Llama-3.1-70B',
+       messages: [{
+         "role": "user",
+         "content": 'What can I do in SF?'
+       }],
+       max_tokens: 512,
+       temperature: 0.7,
+       top_p: 0.9,
+       stream: false
+     }),
+   });
 
-Install Gradio:
+   const json = await response.json();
+   const output = json.choices[0].message.content;
+   console.log(output);
+   ```
 
-bash
-Copy
-Edit
-pip install gradio
-Install the hyperbolic_gradio package (make sure it’s installed via pip or you have it as a dependency):
+4. Install `node-fetch` using npm:
 
-bash
-Copy
-Edit
-pip install hyperbolic_gradio
-Create a file (gradio_script.py) with the following code to launch the interactive Gradio interface:
+   ```bash
+   npm init -y  # Initializes a new Node.js project
+   npm install node-fetch  # Installs fetch for Node.js
+   ```
 
-python
-Copy
-Edit
-import gradio as gr
-import hyperbolic_gradio
+5. Replace `YOUR_API_KEY` with your actual API key.
 
-def generate_response(input_text):
-    # This function would interact with the Hyperbolic API
-    # Example of integrating the API call from your previous Python script
-    url = "https://api.hyperbolic.xyz/v1/chat/completions"
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer YOUR_API_KEY"
-    }
-    data = {
-        "messages": [{
-          "role": "user",
-          "content": input_text
-        }],
-        "model": "NousResearch/Hermes-3-Llama-3.1-70B",
-        "max_tokens": 512,
-        "temperature": 0.7,
-        "top_p": 0.9
-    }
+6. Run the script:
 
-    response = requests.post(url, headers=headers, json=data)
+   ```bash
+   node script.js
+   ```
 
-    if response.status_code == 200:
-        return response.json()['choices'][0]['message']['content']
-    else:
-        return f"Error: {response.status_code} - {response.text}"
+---
 
-gr.Interface(fn=generate_response, inputs="text", outputs="text").launch()
-Replace YOUR_API_KEY with your actual key.
+### 3. **cURL Command** (Command-Line)
 
-Run the Gradio interface:
+**Steps:**
 
-bash
-Copy
-Edit
-python gradio_script.py
+1. Ensure `cURL` is installed (most systems have it by default).
+
+2. Open your terminal and run the following command (replace `YOUR_API_KEY` with your actual key):
+
+   ```bash
+   curl -X POST "https://api.hyperbolic.xyz/v1/chat/completions" \
+     -H "Content-Type: application/json" \
+     -H "Authorization: Bearer YOUR_API_KEY" \
+     --data-raw '{
+       "messages": [{
+         "role": "user",
+         "content": "What can I do in SF?"
+       }],
+       "model": "NousResearch/Hermes-3-Llama-3.1-70B",
+       "max_tokens": 512,
+       "temperature": 0.7,
+       "top_p": 0.9,
+       "stream": false
+     }'
+   ```
+
+   This will send the request to the API directly from the terminal.
+
+---
+
+### 4. **Gradio Interface** (Python GUI)
+
+**Steps:**
+
+1. Install Gradio:
+
+   ```bash
+   pip install gradio
+   ```
+
+2. Install the `hyperbolic_gradio` package (make sure it’s installed via pip or you have it as a dependency):
+
+   ```bash
+   pip install hyperbolic_gradio
+   ```
+
+3. Create a file (`gradio_script.py`) with the following code to launch the interactive Gradio interface:
+
+   ```python
+   import gradio as gr
+   import hyperbolic_gradio
+
+   def generate_response(input_text):
+       # This function would interact with the Hyperbolic API
+       # Example of integrating the API call from your previous Python script
+       url = "https://api.hyperbolic.xyz/v1/chat/completions"
+       headers = {
+           "Content-Type": "application/json",
+           "Authorization": "Bearer YOUR_API_KEY"
+       }
+       data = {
+           "messages": [{
+             "role": "user",
+             "content": input_text
+           }],
+           "model": "NousResearch/Hermes-3-Llama-3.1-70B",
+           "max_tokens": 512,
+           "temperature": 0.7,
+           "top_p": 0.9
+       }
+
+       response = requests.post(url, headers=headers, json=data)
+
+       if response.status_code == 200:
+           return response.json()['choices'][0]['message']['content']
+       else:
+           return f"Error: {response.status_code} - {response.text}"
+
+   gr.Interface(fn=generate_response, inputs="text", outputs="text").launch()
+   ```
+
+4. Replace `YOUR_API_KEY` with your actual key.
+
+5. Run the Gradio interface:
+
+   ```bash
+   python gradio_script.py
+   ```
+
 This will launch a Gradio app in your browser where you can interact with the model by typing questions.
 
-Summary
-For Python: Run python script.py.
+---
 
-For JavaScript: Run node script.js.
+### Summary
 
-For cURL: Run the command directly in the terminal.
+* **For Python**: Run `python script.py`.
+* **For JavaScript**: Run `node script.js`.
+* **For cURL**: Run the command directly in the terminal.
+* **For Gradio**: Run `python gradio_script.py` to launch the GUI.
 
-For Gradio: Run python gradio_script.py to launch the GUI.
